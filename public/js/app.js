@@ -2215,10 +2215,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
+
 function About() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "lg:flex lg:flex-wrap g-0",
-    children: "Lorem ipsum dolor sit amet, consectetur adip"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "Test task for the position of PHP developer."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-bold leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "Requirements:"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- create a web application"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- the user should be able to enter the page URL and the minimum image size"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- the script should parse the page at the specified address, find images no smaller than the specified size, and save them"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- when saving, the images should be reduced in height to 200px, and then cropped in width to 200px as well"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- the page should display previously uploaded images"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- all interactions with the server part should occur without reloading the page"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-bold leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "Realization:"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- Laravel for backend"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- ReactJS for frontend"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- S3 storage for pictures"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "text-base font-light leading-relaxed mt-0 mb-4 text-gray-800",
+        children: "- Tools: VS Code, composer, yarn"
+      })]
+    })
   });
 }
 
@@ -2237,6 +2279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _PictureCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PictureCard */ "./resources/js/components/PictureCard.js");
@@ -2290,12 +2333,15 @@ function Folder() {
     className: "lg:w-12/12 px-4 md:px-0",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "md:p-12 md:mx-6",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "text-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
-          className: "text-xl font-semibold mt-1 mb-12 pb-1",
-          children: "Parsed images"
-        })
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "text-center text-xl font-semibold mt-1 mb-12 pb-1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          children: "Parsed images :: "
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          className: "text-blue-500 hover:text-blue-800",
+          to: "/",
+          children: "back"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "flex flex-wrap -m-1 md:-m-2",
         children: images.map(function (image) {
@@ -2628,11 +2674,11 @@ function PictureLoader(props) {
               children: "Parse"
             })
           }), showSuccess && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            "class": "bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700",
+            className: "bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700",
             role: "alert",
             children: "Images loaded"
           }), showError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            "class": "bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700",
+            className: "bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700",
             role: "alert",
             children: ["Something went wrong: ", errorMessage]
           }), formDisabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
