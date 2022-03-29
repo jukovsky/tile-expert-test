@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ImageStorageService;
+use App\Services\S3ImageStorageService;
 use App\Services\PageParserService;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class PageController extends Controller
 
             $pageUrl = $validatedData['url'];
             $pageParser = new PageParserService($validatedData['url']);
-            $imageStorage = new ImageStorageService(md5($pageUrl));
+            $imageStorage = new S3ImageStorageService(md5($pageUrl));
 
             $sourceImageUrls = $pageParser->getImages();
             $page = $imageStorage->saveByMinimumSize($sourceImageUrls, $validatedData['size']);
@@ -39,7 +39,7 @@ class PageController extends Controller
     public function clear(string $folder)
     {
         try {
-            $imageStorage = new ImageStorageService($folder);
+            $imageStorage = new S3ImageStorageService($folder);
             $imageStorage->clear();
         } catch (\Exception $ex) {
             return $this->respondError($ex->getMessage());
@@ -53,7 +53,7 @@ class PageController extends Controller
     public function all()
     {
         try {
-            $imageStorage = new ImageStorageService();
+            $imageStorage = new S3ImageStorageService();
             $pages = $imageStorage->getAllWithThumbs();
         } catch (\Exception $ex) {
             return $this->respondError($ex->getMessage());
@@ -68,7 +68,7 @@ class PageController extends Controller
     public function folder(string $folder)
     {
         try {
-            $imageStorage = new ImageStorageService($folder);
+            $imageStorage = new S3ImageStorageService($folder);
             $images = $imageStorage->getFromFolder();
         } catch (\Exception $ex) {
             return $this->respondError($ex->getMessage());

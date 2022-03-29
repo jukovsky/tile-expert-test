@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
+use App\Interfaces\ImageStorageService;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class ImageStorageService
+class S3ImageStorageService implements ImageStorageService
 {
     private string $folder;
     private string $height;
     private string $width;
+	private string $path = 'te-test/';
 
     public function __construct(string $folder = '', int $height = 200, int $width = 200)
     {
@@ -36,15 +39,12 @@ class ImageStorageService
                     continue;
                 }
 
-                $filename = md5($imageUrl);
-                $path = storage_path('app/public/' . $this->folder . '/');
-                if (!file_exists($path)) {
-                    mkdir($path, 0775, true);
-                }
+                $filename = md5($imageUrl) . '.' . pathinfo($imageUrl, PATHINFO_EXTENSION);
+                $path = $this->path . $this->folder . '/';
                 $fullName = $path . $filename;
                 $image->heighten($this->height)
-                    ->crop($this->width, $this->height)
-                    ->save($fullName);
+                    ->crop($this->width, $this->height);
+				Storage::put($fullName, $image->stream());
             } catch (\Exception $ex) {
                 continue;
             }
@@ -52,7 +52,7 @@ class ImageStorageService
             if (!$res) {
                 $res = [
                     'folder' => $this->folder,
-                    'cover'  => asset('storage' . '/' . $this->folder . '/' . $filename),
+                    'cover'  =>  Storage::url($fullName),
                 ];
             }
         }
@@ -77,17 +77,19 @@ class ImageStorageService
     public function getAllWithThumbs(): array
     {
         $res = [];
-
-        $path = storage_path('app/public/');
-        foreach (glob($path . '*', GLOB_MARK) as $folder) {
-            foreach (glob($folder . '*', GLOB_MARK) as $thumb) {
-                $res[] = [
-					'folder' => basename($folder),
-					'cover' => asset('storage' . '/' . basename($folder) . '/' . basename($thumb)),
-				];
-                break;
-            }
-        }
+		$added = [];
+		foreach (Storage::allFiles($this->path) as $thumb) {
+			$folder = explode('/', $thumb)[1];
+			if (in_array($folder, $added)) {
+				continue;
+			}
+			$added[] = $folder;
+			$res[] = [
+				'folder' => $folder,
+				'cover'  => Storage::url($thumb),
+			];
+			break;
+		}
 
         return $res;
     }
@@ -100,17 +102,12 @@ class ImageStorageService
             return $res;
         }
 
-        $path = storage_path('app/public/' . $this->folder . '/');
-        if (is_dir($path)) {
-            $files = glob($path . '*', GLOB_MARK);
-
-            foreach ($files as $file) {
-                $res[] = [
-					'key' => md5($file),
-					'url' => asset('storage' . '/' . $this->folder . '/' . basename($file)),
-				];
-            }
-        }
+		foreach (Storage::allFiles($this->path . $this->folder . '/') as $file) {
+			$res[] = [
+				'key' => md5($file),
+				'url' => Storage::url($file),
+			];
+		}
 
         return $res;
     }
