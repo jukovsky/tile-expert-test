@@ -98,7 +98,7 @@ export default function PictureLoader(props) {
                         </div>
                         {showSuccess && (
                             <div
-                                class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700"
+                                className="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700"
                                 role="alert"
                             >
                                 Images loaded
@@ -106,7 +106,7 @@ export default function PictureLoader(props) {
                         )}
                         {showError && (
                             <div
-                                class="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700"
+                                className="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700"
                                 role="alert"
                             >
                                 Something went wrong: {errorMessage}
