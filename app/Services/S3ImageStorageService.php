@@ -88,7 +88,6 @@ class S3ImageStorageService implements ImageStorageService
 				'folder' => $folder,
 				'cover'  => Storage::url($thumb),
 			];
-			break;
 		}
 
         return $res;
