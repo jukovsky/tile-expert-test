@@ -30,21 +30,24 @@ class ImageStorageService
 
         $res = [];
         foreach ($imageUrls as $imageUrl) {
-            $image = Image::make($imageUrl);
-            if ($image->width() < $size || $image->height() < $size) {
-                continue;
-            }
+            try {
+                $image = Image::make($imageUrl);
+                if ($image->width() < $size || $image->height() < $size) {
+                    continue;
+                }
 
-            $filename = md5($imageUrl);
-            $path = storage_path('app/public/' . $this->folder . '/');
-            if (!file_exists($path)) {
-                mkdir($path, 0775, true);
-            }
-            $fullName = $path . $filename;
-            $image->heighten($this->height)
+                $filename = md5($imageUrl);
+                $path = storage_path('app/public/' . $this->folder . '/');
+                if (!file_exists($path)) {
+                    mkdir($path, 0775, true);
+                }
+                $fullName = $path . $filename;
+                $image->heighten($this->height)
                     ->crop($this->width, $this->height)
                     ->save($fullName);
-
+            } catch (\Exception $ex) {
+                continue;
+            }
 
             if (!$res) {
                 $res = [
@@ -79,9 +82,9 @@ class ImageStorageService
         foreach (glob($path . '*', GLOB_MARK) as $folder) {
             foreach (glob($folder . '*', GLOB_MARK) as $thumb) {
                 $res[] = [
-                    'folder' => basename($folder),
-                    'cover' => asset('storage' . '/' . basename($folder) . '/' . basename($thumb)),
-                ];
+					'folder' => basename($folder),
+					'cover' => asset('storage' . '/' . basename($folder) . '/' . basename($thumb)),
+				];
                 break;
             }
         }
@@ -103,9 +106,9 @@ class ImageStorageService
 
             foreach ($files as $file) {
                 $res[] = [
-                    'key' => md5($file),
-                    'url' => asset('storage' . '/' . $this->folder . '/' . basename($file)),
-                ];
+					'key' => md5($file),
+					'url' => asset('storage' . '/' . $this->folder . '/' . basename($file)),
+				];
             }
         }
 
