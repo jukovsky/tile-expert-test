@@ -9,7 +9,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body>
+<body class="bg-gray-200">
     <div id="react-container"></div>
 </body>
 </html>
