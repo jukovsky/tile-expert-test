@@ -48,5 +48,5 @@
 
 * Laravel
 * ReactJS
-* TalwindCSS
+* TailwindCSS
 * S3 Amazon storage
